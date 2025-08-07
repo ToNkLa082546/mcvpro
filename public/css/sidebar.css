@@ -1,0 +1,154 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f8f9fa;
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -260px;
+  width: 250px;
+  height: 100%;
+  background-color: #212529;
+  color: white;
+  transition: left 0.3s ease;
+  z-index: 1000;
+  overflow-y: auto;
+  border-right: 1px solid rgba(255,255,255,0.1);
+}
+
+.sidebar.show {
+  left: 0;
+}
+
+/* Open Button */
+.openbtn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1100;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  padding: 0;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar .nav-link {
+  font-size: 15px;
+  color: #dee2e6;
+  transition: all 0.2s ease;
+}
+
+.sidebar .nav-link:hover {
+  color: #b2acac;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+/* Notification Badge */
+/* === Notification Dropdown (Modern Style) === */
+
+/* 🔴 Badge แจ้งเตือนสีแดงด้านบน */
+#notification-badge {
+    font-size: 0.75rem;
+    padding: 0.25em 0.6em;
+    margin-left: 8px;
+    background-color: red;
+    color: white;
+    border-radius: 50rem;
+}
+
+/* 📦 กล่องดรอปดาวน์หลักของแจ้งเตือน */
+#notification-dropdown {
+    width: auto !important;
+    max-width: 90vw;
+    min-width: 320px;
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    word-break: break-word;
+    white-space: normal !important;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    border-radius: 0.5rem;
+    padding: 0;
+    background-color: #212529; /* สีเข้มแบบ Dark Mode */
+}
+
+/* 🔔 รายการแต่ละการแจ้งเตือน */
+.notification-item {
+    display: block;
+    padding: 0.75rem 1rem;
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    border-bottom: 1px solid #343a40;
+    color: #f8f9fa;
+    text-decoration: none;
+    transition: background-color 0.2s ease-in-out;
+}
+
+/* 🔚 ไม่ใส่เส้นคั่นในรายการสุดท้าย */
+#notification-dropdown li:last-child .notification-item {
+    border-bottom: none;
+}
+
+/* 📢 ข้อความหลักของการแจ้งเตือน */
+.notification-item .fw-semibold {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    color: #ffffff;
+}
+
+/* 🕓 วันที่และเวลา */
+.notification-item .text-muted {
+    font-size: 0.75rem;
+    color: #adb5bd !important;
+}
+
+/* ✨ Hover Effect */
+.notification-item:hover {
+    background-color: #343a40;
+    color: #fff;
+}
+
+/* 🧹 ปุ่ม Clear All */
+#clear-notifications {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    background: transparent;
+    color: #f8f9fa;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: all 0.2s ease;
+}
+
+#clear-notifications:hover {
+    background-color: #f8f9fa;
+    color: #212529;
+    border-color: #f8f9fa;
+}
+
+
+/* สไตล์สำหรับข้อความ "No new notifications" */
+.dropdown-item-text.text-muted {
+    padding: 0.75rem 1.25rem;
+    font-style: italic;
+}
+
+/* ทำให้ dropdown ไม่ถูกตัด */
+.sidebar {
+  overflow: visible;
+  /* ต้องมีเพื่อให้ dropdown position absolute ทำงาน */
+}
+
+#notification-dropdown .dropdown-item.notification-item {
+    white-space: normal !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    display: block !important;
+    max-width: 100% !important;
+}

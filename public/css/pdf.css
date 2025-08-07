@@ -1,0 +1,29 @@
+body { 
+            font-family: 'thsarabun', sans-serif; 
+            font-size: 13px;
+            color: #333;
+        }
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+        }
+        .table-items th, .table-items td {
+            padding: 8px;
+            vertical-align: top;
+            border-bottom: 1px solid #dee2e6;
+        }
+        .table-items thead th {
+            border-bottom: 2px solid #343a40;
+            border-top: 1px solid #dee2e6;
+        }
+        .table-borderless td { border: 0; }
+        .text-end { text-align: right; }
+        .text-center { text-align: center; }
+        .fw-bold { font-weight: bold; }
+        .text-muted { color: #6c757d; }
+        .small { font-size: 0.9em; }
+        h1 { font-size: 2.5rem; }
+        h2 { font-size: 1.8rem; margin: 0; }
+        .thai-font {
+        font-family: "TH Sarabun New", "thsarabun", sans-serif;
+    }

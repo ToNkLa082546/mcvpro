@@ -1,0 +1,51 @@
+body {
+        font-family: 'Segoe UI', sans-serif;
+        background-color: #00ffff;
+    }
+    .main-content {
+        max-width: 1200px;
+    }
+    .custom-header {
+    background-color: #c300ff;
+    color: #fff;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #ccc;
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+}
+    .card {
+        border-radius: 1rem;
+    }
+    .card-header h4 {
+        margin-bottom: 0;
+        font-weight: bold;
+    }
+    .btn {
+        border-radius: 0.5rem;
+    }
+    .btn-outline-secondary:hover {
+        background-color: #f8f9fa;
+    }
+    .form-control,
+    .form-select {
+        border-radius: 0.5rem;
+    }
+    .table th {
+        background-color: #f9f9f9;
+        font-weight: 600;
+    }
+    .table td {
+        vertical-align: middle;
+    }
+    .naked-link {
+        color: inherit;
+        text-decoration: none;
+    }
+    .naked-link:hover {
+        text-decoration: underline;
+        color: #0d6efd;
+    }
+    .pagination .page-item .page-link {
+        border-radius: 0.4rem;
+        margin: 0 2px;
+    }

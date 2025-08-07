@@ -1,0 +1,40 @@
+body {
+      background-color: #fdfcfb;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .section-header {
+      border-bottom: 2px solid #dee2e6;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn-custom {
+      transition: all 0.2s ease-in-out;
+    }
+
+    .btn-custom:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .table-hover tbody tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    .modal-header {
+      background-color: #f8f9fa;
+      border-bottom: 1px solid #dee2e6;
+    }
+
+    .modal-footer {
+      background-color: #f8f9fa;
+      border-top: 1px solid #dee2e6;
+    }
+
+    .card {
+      border-radius: 0.75rem;
+    }
+    .modal-backdrop {
+        opacity: 0.25 !important; /* ปรับค่าความโปร่งแสง */
+    }

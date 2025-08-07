@@ -1,0 +1,61 @@
+/* ใช้กับ body ของหน้าโปรไฟล์เพื่อให้มีพื้นหลังสีเทาอ่อน */
+body.profile-page {
+    background-color: #f0f2f5;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+/* การ์ดหลักที่ครอบเนื้อหาทั้งหมด */
+.profile-container {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    padding: 2.5rem;
+    max-width: 800px;
+    margin: auto;
+}
+
+/* รูปโปรไฟล์ทรงกลม */
+.profile-pic {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s ease-in-out;
+}
+
+/* ทำให้รูปขยับได้เมื่อเอาเมาส์ไปชี้ */
+.profile-pic-uploader label:hover .profile-pic {
+    transform: scale(1.05);
+    opacity: 0.85;
+}
+
+/* ซ่อน input file เริ่มต้น */
+.profile-pic-uploader input[type="file"] {
+    display: none;
+}
+
+/* จัดสไตล์หัวข้อ */
+.profile-container h3 {
+    font-weight: 700;
+}
+
+.profile-container h5 {
+    font-weight: 600;
+    margin-top: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+/* จัดการแสดงผลข้อมูล */
+.profile-info p {
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+}
+.profile-info p strong {
+    color: #555;
+    min-width: 120px;
+    display: inline-block;
+}

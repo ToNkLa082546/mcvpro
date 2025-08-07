@@ -1,0 +1,56 @@
+@media print {
+    /* ... โค้ดอื่นๆ สำหรับซ่อนปุ่มและจัดหน้า ... */
+
+    /* ✅ ใช้กฎนี้เพื่อจัดการเส้นขอบทั้งหมด */
+    .table-bordered th,
+    .table-bordered td {
+        border: 1px solid #dee2e6 !important; /* #dee2e6 คือสีเทามาตรฐานของ Bootstrap */
+    }
+
+    /* ทำให้เส้นขอบล่างของหัวตารางหนาขึ้นเล็กน้อยเพื่อความชัดเจน */
+    .table-bordered thead th {
+        border-bottom-width: 2px !important;
+    }
+}
+
+/* --- สไตล์สำหรับ Sub-item --- */
+
+/* ทำให้แถวของ Sub-item มีสีพื้นหลังเทาอ่อนๆ */
+.sub-item-row {
+    background-color: #f8f9fa !important; 
+}
+
+/* จัดให้คอลัมน์ "Item Name" ของ Sub-item (คอลัมน์ที่ 2) ย่อหน้าเข้าไป */
+.sub-item-row td:nth-child(2) {
+    padding-left: 40px !important; 
+}
+
+/* ทำให้ชื่อรายการหลักเป็นตัวหนา */
+tr:not(.sub-item-row) .item-name {
+    font-weight: bold;
+}
+
+.sub-item-row td {
+    border-top: none !important;
+}
+
+/* ทำให้ไอคอน drag handle มีสีจางๆ และแสดงเฉพาะตอนเอาเมาส์ไปชี้ */
+.drag-handle {
+    opacity: 0.25;
+    transition: opacity 0.2s;
+}
+tr:hover .drag-handle {
+    opacity: 1;
+}
+tr.hidden-in-quote {
+    opacity: 0.6; /* ทำให้แถวจางลง */
+    background-color: #f8f9fa; /* อาจจะเพิ่มสีพื้นหลังจางๆ */
+}
+
+/* อาจจะเพิ่มข้อความเล็กๆ เพื่อบอกสถานะ */
+tr.hidden-in-quote td:first-child::after {
+    content: "(Hidden)";
+    display: block;
+    font-size: 0.7em;
+    color: #6c757d;
+}
