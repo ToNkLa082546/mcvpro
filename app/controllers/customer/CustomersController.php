@@ -320,7 +320,7 @@ public function update($id)
         $customer = $this->customerModel->getById($customerId);
         if ($customer['user_id'] != $_SESSION['user_id']) {
             $_SESSION['error'] = "Only the owner can add collaborators.";
-            header('Location: /mcvpro/public/customers/view/' . encodeId($customerId));
+            header('Location: /mcvpro/public/customers/manage/' . encodeId($customerId));
             exit();
         }
 
@@ -341,7 +341,7 @@ public function update($id)
         } else {
             $_SESSION['error'] = "Please select a user.";
         }
-        header('Location: /mcvpro/public/customers/view/' . encodeId($customerId));
+        header('Location: /mcvpro/public/customers/manage/' . encodeId($customerId));
         exit();
     }
 
@@ -355,7 +355,7 @@ public function update($id)
         $customer = $this->customerModel->getById($customerId);
         if ($customer['user_id'] != $_SESSION['user_id']) {
             $_SESSION['error'] = "Only the owner can remove collaborators.";
-            header('Location: /mcvpro/public/customers/view/' . encodeId($customerId));
+            header('Location: /mcvpro/public/customers/manage/' . encodeId($customerId));
             exit();
         }
         
@@ -369,7 +369,7 @@ public function update($id)
                 'action_by_user_id' => $_SESSION['user_id'] 
             ]
         );
-        header('Location: /mcvpro/public/customers/view/' . encodeId($customerId));
+        header('Location: /mcvpro/public/customers/manage/' . encodeId($customerId));
         exit();
     }
 
@@ -412,7 +412,7 @@ public function update($id)
         );
         }
 
-        header('Location: /mcvpro/public/customers/view/' . encodeId($customerId));
+        header('Location: /mcvpro/public/customers/manage/' . encodeId($customerId));
         exit();
     }
     

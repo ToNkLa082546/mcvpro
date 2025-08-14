@@ -19,10 +19,11 @@ class ProjectsController extends Controller
      */
     public function index()
 {
-    $page_title = "Project List";
-    $data = [];
+    
     $role = $_SESSION['user_role'] ?? 0;
     $userId = $_SESSION['user_id'] ?? 0;
+    $page_title = "Project List";
+    $data = [];
     
     // เตรียมข้อมูล Notification สำหรับ Sidebar
     if (isset($_SESSION['user_id'])) {
@@ -63,6 +64,7 @@ class ProjectsController extends Controller
     $data['current_page'] = $currentPage;
     
     // เรียกใช้ View
+
     include ROOT_PATH . 'app/views/layout/sidebar.php';
     include ROOT_PATH . 'app/views/project/projects.php';
 }
@@ -293,5 +295,30 @@ class ProjectsController extends Controller
         include ROOT_PATH . 'app/views/project/view.php';
     }
 
-    
+    public function getProjectsByCustomer($customerId)
+    {
+        // ตรวจสอบให้แน่ใจว่ามีการส่ง customerId มา
+        if (empty($customerId)) {
+            http_response_code(400); // Bad Request
+            echo json_encode(['error' => 'Customer ID is required.']);
+            return;
+        }
+
+        try {
+            // === จุดแก้ไข: เรียกใช้เมธอดที่มีอยู่จริงใน Project Model ของคุณ ===
+            $projects = $this->projectModel->getAllByCustomerId($customerId);
+
+            // ตั้งค่า Header เพื่อบอกให้เบราว์เซอร์รู้ว่าข้อมูลที่ส่งกลับไปเป็น JSON
+            header('Content-Type: application/json');
+            
+            // ส่งข้อมูลกลับไปในรูปแบบ JSON
+            echo json_encode($projects);
+
+        } catch (\Throwable $e) {
+            // กรณีเกิดข้อผิดพลาดร้ายแรงในฝั่ง Server
+            http_response_code(500);
+            header('Content-Type: application/json');
+            echo json_encode(['error' => 'An error occurred while fetching projects.']); 
+        }
+    }
 }

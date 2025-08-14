@@ -16,9 +16,7 @@
         <div class="card shadow">
             <div class="card-header py-3 px-4">
                 <h4><i class="fa fa-users-cog me-2"></i>Manage user data</h4>
-                <a href="/mcvpro/public/admin/users/create" class="btn btn-light shadow-sm">
-                     <i class="fas fa-plus"></i> Add new user
-                </a>
+                
             </div>
             <div class="card-body p-4">
                 <?php if (isset($_SESSION['flash_message'])) : ?>

@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?= htmlspecialchars($page_title ?? 'Create Activity') ?></title>
     <link href="/mcvpro/public/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <script src="/mcvpro/public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <link href="/mcvpro/public/vendor/fontawesome/css/all.min.css" rel="stylesheet">
-    <title>Document</title>
+    <link href="/mcvpro/public/vendor/fontawesome/css/all.min.css" rel="stylesheet" />
+    <link href="/mcvpro/public/vendor/summernote/summernote-bs5.min.css" rel="stylesheet">
+
 </head>
 <body>
     <div class="content-wrapper p-4" style="background-color: #f8f9fa;">
@@ -76,10 +77,16 @@
     </div>
 </div>
 
- <!-- JavaScript for dependent dropdowns -->
-    <?php if (!$data['fromProject']): ?>
-    <script src="/mcvpro/public/js/activities/create.js"></script>
-    <?php endif; ?>
+<script src="/mcvpro/public/vendor/jquery/jquery-3.6.0.min.js"></script>
+<script src="/mcvpro/public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/mcvpro/public/vendor/summernote/summernote-bs5.min.js"></script>
+
+
+<?php if (!$data['fromProject']): ?>
+<script src="/mcvpro/public/js/activities/create.js"></script>
+<?php endif; ?>
+
+
 
 </body>
 </html>

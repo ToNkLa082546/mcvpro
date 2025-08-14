@@ -34,20 +34,33 @@ body {
       color: #6c757d;
     }
 
-    .description-box {
+/* บังคับให้ทุก element ใน description-box ชิดซ้าย */
+.description-box,
+.description-box * {
+    text-align: left !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+/* กัน word-wrap แปลกๆ */
+.description-box {
     white-space: pre-wrap;
+    word-break: break-word;
     background-color: #f1f3f5;
     padding: 1rem;
     border-left: 5px solid #0d6efd;
     border-radius: 0.5rem;
     font-size: 0.95rem;
-    
-    display: flex;
-    justify-content: center; /* แนวนอน */
-    align-items: center;     /* แนวตั้ง */
-    min-height: 120px;       /* กำหนดความสูงขั้นต่ำ */
-    text-align: center;
+    display: block;
+    min-height: 120px;
 }
+.tox-edit-area__iframe {
+    word-break: break-all;
+}
+.note-editor.card {
+    display: block;
+}
+
 
 
     .card {

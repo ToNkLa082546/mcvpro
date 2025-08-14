@@ -16,7 +16,6 @@ if (isset($_SESSION['user_id'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title><?= isset($page_title) ? htmlspecialchars($page_title) : 'MCVPro'; ?></title>
   <link href="/mcvpro/public/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <script src="/mcvpro/public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <link href="/mcvpro/public/vendor/fontawesome/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="/mcvpro/public/css/sidebar.css" />
 </head>
@@ -119,7 +118,6 @@ if (isset($_SESSION['user_id'])) {
   </ul>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="/mcvpro/public/js/sidebar.js" defer></script>
 <script src="/mcvpro/public/js/noti.js" defer></script> 
 <script src="/mcvpro/public/js/session-manager.js" defer></script>

@@ -40,7 +40,7 @@
                     <td><?= htmlspecialchars($activity['activity_id']) ?></td>
                     <td><?= htmlspecialchars($activity['company_name']) ?></td>
                     <td><?= htmlspecialchars($activity['project_name']) ?></td>
-                    <td class="text-start"><?= htmlspecialchars(substr($activity['description'], 0, 50)) ?>...</td>
+                    <td><?= htmlspecialchars(mb_substr(strip_tags($activity['description']), 0, 20)) ?>...</td>
                     <td><span class="text-muted small"><?= htmlspecialchars($activity['created_at']) ?></span></td>
                     <td>
                       <a href="/mcvpro/public/activities/view/<?= encodeId($activity['activity_id']) ?>" 
@@ -50,7 +50,6 @@
                       </a>
                       <a href="/mcvpro/public/activities/delete/<?= encodeId($activity['activity_id']) ?>" 
                          class="btn btn-sm btn-outline-danger" 
-                         title="Delete"
                          onclick="return confirm('Are you sure you want to delete this activity?');">
                         <i class="fas fa-trash-alt"></i>
                       </a>

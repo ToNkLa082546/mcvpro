@@ -5,11 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title><?= htmlspecialchars($page_title ?? 'View Activity') ?></title>
 
-  <!-- CSS & JS -->
-  <link href="/mcvpro/public/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="/mcvpro/public/vendor/fontawesome/css/all.min.css" rel="stylesheet" />
-  <script src="/mcvpro/public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+     <link href="/mcvpro/public/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/mcvpro/public/vendor/fontawesome/css/all.min.css" rel="stylesheet" />
+    <link href="/mcvpro/public/vendor/summernote/summernote-bs5.min.css" rel="stylesheet">
+    
     <link href="/mcvpro/public/css/act_view.css" rel="stylesheet" />
 </head>
 <body>
@@ -75,23 +74,40 @@
                 </button>
             </h5>
 
-            <!-- Display Mode -->
-            <div id="descriptionView" class="description-box text-center">
-                <?= !empty($data['activity']['description']) 
-                    ? htmlspecialchars($data['activity']['description']) 
-                    : '<em class="text-muted">No description provided.</em>' ?>
+            <?php
+                $desc = $data['activity']['description'] ?? '';
+
+                // ลบ inline style ที่ตั้ง text-align:center
+                $desc = preg_replace('/style="[^"]*text-align\s*:\s*center[^"]*"/i', '', $desc);
+
+                // ลบ tag <center>
+                $desc = preg_replace('/<\s*center[^>]*>/i', '', $desc);
+                $desc = preg_replace('/<\/\s*center\s*>/i', '', $desc);
+
+                // ถ้าว่าง ให้ใส่ข้อความ default
+                if (trim($desc) === '') {
+                    $desc = '<em class="text-muted">No description provided.</em>';
+                }
+                ?>
+
+                <div id="descriptionView" class="description-box">
+                    <?= $desc ?>
             </div>
 
+
+            <div id="description-feedback"></div>
             <!-- Edit Mode (Hidden by default) -->
             <form id="descriptionForm" data-activity-id="<?= htmlspecialchars($data['activity']['activity_id']) ?>" style="display: none;">
                 <div class="mb-3">
-                    <textarea name="description" class="form-control" rows="5"><?= htmlspecialchars($data['activity']['description']) ?></textarea>
+                    <textarea id="descriptionEditor" name="description" class="form-control" rows="5"><?= htmlspecialchars($data['activity']['description']) ?></textarea>
                 </div>
                 <div class="d-flex gap-2">
                     <button type="submit" class="btn btn-success btn-sm"><i class="fas fa-save me-1"></i>Save</button>
                     <button type="button" class="btn btn-secondary btn-sm" id="cancelBtn"><i class="fas fa-times me-1"></i>Cancel</button>
                 </div>
             </form>
+
+
 
 
 
@@ -211,6 +227,10 @@
         'initialQuotations' => $data['quotations'] ?? [] // เพิ่ม ?? [] เพื่อป้องกัน error หากไม่มี quotations
     ]) ?>
 </script>
-  <script src="/mcvpro/public/js/activities/view.js"></script>
+
+<script src="/mcvpro/public/vendor/jquery/jquery-3.6.0.min.js"></script>
+    <script src="/mcvpro/public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/mcvpro/public/vendor/summernote/summernote-bs5.min.js"></script>
+    <script src="/mcvpro/public/js/activities/view.js"></script>
 </body>
 </html>

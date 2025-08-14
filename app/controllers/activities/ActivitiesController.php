@@ -23,50 +23,50 @@ class ActivitiesController extends Controller
      * Display a list of all activities.
      */
     public function index()
-    {
-        $page_title = "Activity List";
-        $data = [];
-        $userId = $_SESSION['user_id'] ?? 0;
-        $role = $_SESSION['user_role'] ?? 0;
-        
-        // Prepare notification data for the sidebar
-        if (isset($_SESSION['user_id'])) {
-            $data['unreadCount'] = $this->notificationModel->countUnreadForUser($userId);
-            $data['unreadNotifications'] = $this->notificationModel->getUnreadForUser($userId, 5);
-        }
-
-        $filters = [
-            'search' => trim($_GET['search'] ?? ''),
-            'customer_id' => trim($_GET['customer_id'] ?? ''),
-            'project_id' => trim($_GET['project_id'] ?? ''),
-            'start_date' => trim($_GET['start_date'] ?? ''),
-            'end_date' => trim($_GET['end_date'] ?? '')
-        ];
-        $perPage = 15;
-        $currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-
-        if (!empty(array_filter($filters))) {
-            $totalActivities = $this->activityModel->countFiltered($filters, $userId, $role);
-            $activities = $this->activityModel->getFilteredPaginated($filters, $currentPage, $perPage, $userId, $role);
-        } else {
-            // Get all activities or activities for the logged-in user
-            if (in_array($role, [1, 2])) {
-                $totalActivities = $this->activityModel->countAll();
-                $activities = $this->activityModel->getAllPaginated($currentPage, $perPage);
-            } else {
-                $totalActivities = $this->activityModel->countAllForUser($userId);
-                $activities = $this->activityModel->getAllForUserPaginated($userId, $currentPage, $perPage);
-            }
-        }
-        
-        $data['activities'] = $activities;
-        $data['total_activities'] = $totalActivities;
-        $data['per_page'] = $perPage;
-        $data['current_page'] = $currentPage;
-
-        include ROOT_PATH . 'app/views/layout/sidebar.php';
-        include ROOT_PATH . 'app/views/activities/index.php';
+{
+    $page_title = "activities list";
+    $data = [];
+    $userId = $_SESSION['user_id'] ?? 0;
+    $role = $_SESSION['user_role'] ?? 0;
+    
+    // เตรียมข้อมูลการแจ้งเตือนสำหรับแถบด้านข้าง
+    if (isset($_SESSION['user_id'])) {
+        $data['unreadCount'] = $this->notificationModel->countUnreadForUser($userId);
+        $data['unreadNotifications'] = $this->notificationModel->getUnreadForUser($userId, 5);
     }
+
+    $filters = [
+        'search' => trim($_GET['search'] ?? ''),
+        'customer_id' => trim($_GET['customer_id'] ?? ''),
+        'project_id' => trim($_GET['project_id'] ?? ''),
+        'start_date' => trim($_GET['start_date'] ?? ''),
+        'end_date' => trim($_GET['end_date'] ?? '')
+    ];
+    $perPage = 15;
+    $currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+
+    // ตรวจสอบว่ามีตัวกรองใดๆ ใช้งานอยู่หรือไม่
+    if (!empty(array_filter($filters))) {
+        // หากมีการใช้ตัวกรอง จะยังคงใช้ตรรกะเดิมในการกรองตามบทบาท
+        // โดยเมธอดในโมเดลจะจัดการเรื่องสิทธิ์การเข้าถึงเอง
+        $totalActivities = $this->activityModel->countFiltered($filters, $userId, $role);
+        $activities = $this->activityModel->getFilteredPaginated($filters, $currentPage, $perPage, $userId, $role);
+    } else {
+        // แก้ไข: ส่วนนี้ถูกปรับเปลี่ยน
+        // โค้ดนี้จะแสดงเฉพาะกิจกรรมของผู้ใช้ที่ล็อกอินอยู่เป็นค่าเริ่มต้นเสมอ
+        // โดยไม่คำนึงถึงบทบาทว่าเป็นผู้ดูแลระบบหรือไม่
+        $totalActivities = $this->activityModel->countAllForUser($userId);
+        $activities = $this->activityModel->getAllForUserPaginated($userId, $currentPage, $perPage);
+    }
+    
+    $data['activities'] = $activities;
+    $data['total_activities'] = $totalActivities;
+    $data['per_page'] = $perPage;
+    $data['current_page'] = $currentPage;
+
+    include ROOT_PATH . 'app/views/layout/sidebar.php';
+    include ROOT_PATH . 'app/views/activities/index.php';
+}
 
     /**
      * Display the form to create a new activity.
@@ -229,7 +229,6 @@ class ActivitiesController extends Controller
         ];
         
         $page_title = 'View Activity';
-        include ROOT_PATH . 'app/views/layout/sidebar.php';
         include ROOT_PATH . 'app/views/activities/view.php';
     }
 
@@ -347,6 +346,7 @@ class ActivitiesController extends Controller
     {
         // 1. Decode the ID
         $id = decodeId($hashedId);
+        
         if ($id === null) {
             // If the ID is invalid, redirect back with an error
             $_SESSION['error'] = 'Invalid Activity ID.';
@@ -357,7 +357,7 @@ class ActivitiesController extends Controller
         // 2. (สำคัญ) ตรวจสอบสิทธิ์ก่อนทำการลบ
         // ดึงข้อมูล Activity เพื่อดูว่าใครเป็นเจ้าของ
         $activity = $this->activityModel->getById($id);
-
+        
         if (!$activity) {
             $_SESSION['error'] = 'Activity not found.';
             header('Location: /mcvpro/public/activities');
