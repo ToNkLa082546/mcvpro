@@ -62,51 +62,53 @@ $page = $data['currentPage'] ?? 1;
                 </form>
 
                 <div class="table-responsive">
-                    <table class="table table-hover align-middle text-center">
-                        <thead>
-                            <tr>
-                                <th>Company Name</th>
-                                <th>Create Date</th>
-                                <th>Create By</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php if (empty($customers)): ?>
-                                <tr>
-                                    <td colspan="4" class="text-center text-muted py-4">
-                                        <i class="fa-solid fa-circle-exclamation me-2"></i>Customer information not found
-                                    </td>
-                                </tr>
-                            <?php else: ?>
-                                <?php foreach ($customers as $customer): ?>
-                                    <tr>
-                                        <td><?= htmlspecialchars($customer['company_name']) ?></td>
-                                        <td class="text-nowrap">
-                                            <?= $customer['created_at'] ? date("d F Y, H:i", strtotime($customer['created_at'])) : '-' ?>
-                                        </td>
-                                        <td><?= htmlspecialchars($customer['created_by_display'] ?? '-') ?></td>
-                                        <td class="text-center action-btns">
-                                            <a href="/mcvpro/public/customers/view/<?= encodeId($customer['customer_id']) ?>"
-                                                class="btn btn-outline-info btn-sm" title="Details">
-                                                <i class="fas fa-eye"></i>
-                                                
-                                            </a>
-                                            <?php if (in_array($_SESSION['user_role'], [2, 3])): ?>
-                                                <a href="/mcvpro/public/customers/delete/<?= $customer['customer_id'] ?>"
-                                                    class="btn btn-outline-danger btn-sm"
-                                                    onclick="return confirm('คุณแน่ใจหรือไม่ว่าต้องการลบลูกค้ารายนี้?');"
-                                                    title="Delete">
-                                                    <i class="fas fa-trash"></i>
-                                                </a>
-                                            <?php endif; ?>
-                                        </td>
-                                    </tr>
-                                <?php endforeach; ?>
+                    <div class="row g-4">
+    <?php if (empty($customers)): ?>
+        <div class="col-12">
+            <div class="alert alert-warning text-center">
+                <i class="fa-solid fa-circle-exclamation me-2"></i>Customer information not found
+            </div>
+        </div>
+    <?php else: ?>
+        <?php foreach ($customers as $customer): ?>
+            <div class="col-md-6 col-lg-4">
+                <div class="customer-card card shadow-sm h-100">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold text-primary mb-2">
+                            <i class="fas fa-solid fa-building me-2"></i>
+                            <?= htmlspecialchars($customer['company_name']) ?>
+                        </h5>
+                        <p class="card-text mb-1">
+                            <i class="fas fa-calendar me-2"></i>
+                            <?= $customer['created_at'] ? date("d F Y, H:i", strtotime($customer['created_at'])) : '-' ?>
+                        </p>
+                        <p class="card-text text-muted mb-3">
+                            <i class="fas fa-user me-1"></i>
+                            <?= htmlspecialchars($customer['created_by_display'] ?? '-') ?>
+                        </p>
+                        <div class="d-flex justify-content-end gap-2">
+                            <a href="/mcvpro/public/customers/view/<?= encodeId($customer['customer_id']) ?>"
+                               class="btn btn-outline-info btn-sm btn-circle" title="Details">
+                               <i class="fas fa-eye"></i>
+                            </a>
+                            <?php if (in_array($_SESSION['user_role'], [1, 2])): ?>
+                                <a href="/mcvpro/public/customers/delete/<?= $customer['customer_id'] ?>"
+                                   class="btn btn-outline-danger btn-sm btn-circle"
+                                   onclick="return confirm('คุณแน่ใจหรือไม่ว่าต้องการลบลูกค้ารายนี้?');"
+                                   title="Delete">
+                                   <i class="fas fa-trash"></i>
+                                </a>
                             <?php endif; ?>
-                        </tbody>
-                    </table>
-                    <?php if ($totalPages > 1): ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    <?php endif; ?>
+</div>
+
+
+                <?php if ($totalPages > 1): ?>
                 <nav>
                     <ul class="pagination justify-content-center mt-4">
                         <!-- Previous -->

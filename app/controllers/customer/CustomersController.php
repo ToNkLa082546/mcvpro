@@ -181,13 +181,7 @@ public function edit($hashedId)
     // แทนที่ฟังก์ชัน store()
 public function store()
 {
-    $hashedCustomerId = $_POST['customer_id']; 
 
-    // 1. ถอดรหัส ID กลับเป็นตัวเลขก่อน
-    $customerId = decodeId($hashedCustomerId);
-    if ($customerId === null) {
-        die("Invalid Customer ID provided.");
-    }
     $logger = LoggerService::getLogger('customer');
     if (empty($_POST['company_name'])) {
         $_SESSION['error'] = 'Company name is required.';
@@ -214,6 +208,7 @@ public function store()
     header('Location: /mcvpro/public/customers');
     exit();
 }
+
 
 /**
  * รับข้อมูลที่แก้ไขแล้วมาอัปเดตลงฐานข้อมูล (พร้อม Log การเปลี่ยนแปลง)

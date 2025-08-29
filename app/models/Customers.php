@@ -160,7 +160,7 @@ public function removeCollaborator(int $customerId, int $userId): bool
 public function canUserAccess(int $customerId, int $userId, int $userRole): bool
 {
     // 1. ถ้าเป็น Admin (role_id=1) ให้ผ่านได้เลยเสมอ
-    if ($userRole == 1) {
+    if ($userRole == 1 || $userRole == 2) {
         return true;
     }
 

@@ -77,58 +77,48 @@
                     </div>
                 </form>
 
-                <div class="table-responsive">
-                    <table class="table table-hover align-middle text-center">
-                        <thead>
-                            <tr>
-                                <th>Project Name</th>
-                                <th>Company Name</th>
-                                <th>Budget</th>
-                                <th>Status</th>
-                                <th>Create By</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php if (empty($projects)) : ?>
-                                <tr>
-                                    <td colspan="6" class="text-center text-muted py-4">🚫 Project not found</td>
-                                </tr>
-                            <?php else : ?>
-                                <?php foreach ($projects as $project) : ?>
-                                    <?php
-                                    $status = strtolower($project['status']);
-                                    $badgeClass = match ($status) {
-                                        'pending' => 'warning',
-                                        'approved' => 'success',
-                                        'closed' => 'secondary',
-                                        default => 'dark'
-                                    };
-                                    ?>
-                                    <tr>
-                                        <td><?= htmlspecialchars($project['project_name']) ?></td>
-                                        <td><?= htmlspecialchars($project['company_name']) ?></td>
-                                        <td class="text-end"><?= number_format($project['project_price'], 2) ?> ฿</td>
-                                        <td>
-                                            <span class="badge bg-<?= $badgeClass ?> badge-status">
-                                                <?= htmlspecialchars($project['status']) ?>
-                                            </span>
-                                        </td>
-                                        <td><?= htmlspecialchars($project['created_by_name']) ?></td>
-                                        <td class="text-center action-btns">
-                                            <a href="/mcvpro/public/projects/view/<?= encodeId($project['project_id']) ?>" class="btn btn-outline-info btn-sm" title="Details">
-                                                <i class="fas fa-eye"></i>
-                                            </a>
-                                            <a href="/mcvpro/public/projects/delete/<?= encodeId($project['project_id']) ?>" class="btn btn-outline-danger btn-sm" title="Delete"
-                                               onclick="return confirm('คุณแน่ใจหรือไม่ว่าต้องการลบโปรเจกต์นี้?');">
-                                                <i class="fas fa-trash"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                <?php endforeach; ?>
-                            <?php endif; ?>
-                        </tbody>
-                    </table>
+                
+                <div class="project-card-container">
+                    <?php if (empty($projects)) : ?>
+                        <p class="text-center text-muted py-4">🚫 Project not found</p>
+                    <?php else : ?>
+                        <?php foreach ($projects as $project) : ?>
+                            <?php
+                            $status = strtolower($project['status']);
+                            $statusClass = match ($status) {
+                                'pending' => 'status-pending',
+                                'approved' => 'status-approved',
+                                'closed' => 'status-closed',
+                                default => 'status-closed'
+                            };
+                            ?>
+                            <div class="project-card">
+                                <h5><?= htmlspecialchars($project['project_name']) ?></h5>
+                                <div class="company"><i class="fas fa-building me-1"></i><?= htmlspecialchars($project['company_name']) ?></div>
+
+                                <div class="meta">
+                                    <div class="budget"><?= number_format($project['project_price'], 2) ?> ฿</div>
+                                    <div class="status <?= $statusClass ?>"><?= htmlspecialchars($project['status']) ?></div>
+                                </div>
+
+                                <div class="footer">
+                                    <span><i class="fas fa-user me-1"></i><?= htmlspecialchars($project['created_by_name']) ?></span>
+                                    <div class="actions">
+                                        <a href="/mcvpro/public/projects/view/<?= encodeId($project['project_id']) ?>" class="btn btn-outline-info btn-sm btn-circle">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                        <?php if (in_array($_SESSION['user_role'], [1, 2])): ?>
+                                        <a href="/mcvpro/public/projects/delete/<?= encodeId($project['project_id']) ?>" class="btn btn-outline-danger btn-sm btn-circle"
+                                        onclick="return confirm('คุณแน่ใจหรือไม่ว่าต้องการลบโปรเจกต์นี้?');">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </div>
                     <?php
                     // คำนวณค่าจาก Controller
                     $total_pages = ceil($data['total_projects'] / $data['per_page']);
@@ -163,14 +153,14 @@
                     </nav>
                     <?php endif; ?>
                 </div>
-            </div>
+            
 
             <div class="card-footer text-end text-muted px-4 py-3">
                 Showing <?= count($projects) ?> project(s)
             </div>
         </div>
     </div>
-
+</div>
 
 </body>
 

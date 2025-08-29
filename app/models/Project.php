@@ -118,10 +118,21 @@ class Project
      * @param int $id
      * @return bool
      */
-    public function delete(int $id): bool
+    public function delete($id)
     {
-        $stmt = $this->pdo->prepare("DELETE FROM project WHERE project_id = ?");
-        return $stmt->execute([$id]);
+        try {
+            // --- โค้ดที่อาจเกิด Error ---
+            $sql = "DELETE FROM project WHERE project_id = :id";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute(['id' => $id]);
+
+            // ถ้าโค้ดทำงานมาถึงตรงนี้ได้ แสดงว่าลบสำเร็จ
+            return true;
+
+        } catch (PDOException $e) {
+            error_log($e->getMessage()); 
+            return false;
+        }
     }
 
     public function getAvailableProjects(): array

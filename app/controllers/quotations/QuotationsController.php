@@ -93,7 +93,6 @@ class QuotationsController extends Controller
 
 
         // ตอนนี้ View จะมองเห็นตัวแปร $scripts แล้ว
-        include ROOT_PATH . 'app/views/layout/sidebar.php';
         include ROOT_PATH . 'app/views/quotations/create.php';
         return; 
     }
@@ -157,7 +156,6 @@ class QuotationsController extends Controller
 
     $scripts = ['/mcvpro/public/js/quotation.js'];
 
-    include ROOT_PATH . 'app/views/layout/sidebar.php';
     include ROOT_PATH . 'app/views/quotations/create.php';
 }
 

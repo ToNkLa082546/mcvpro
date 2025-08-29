@@ -143,8 +143,8 @@ $isOwner = isset($_SESSION['user_id']) && isset($q['created_by']) && ($_SESSION[
             <!-- Header -->
             <div class="d-flex justify-content-between align-items-center border-bottom pb-3 mb-4">
                 <div>
-                    <h2 class="mb-1">[Your Company Name]</h2>
-                    <p class="text-muted mb-0 small">[Your Address]<br>[Your Phone & Email]</p>
+                    <h2 class="mb-1">BIGFISH ENTERPRISE LIMITED</h2>
+                    <p class="text-muted mb-0 small">6th FL., Software Park Bldg., 99/29<br>Email : info@bigfish.co.th</p>
                 </div>
                 <div>
                     <h1 class="display-5 text-muted mb-0">QUOTATION</h1>

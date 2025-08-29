@@ -1,4 +1,3 @@
-<?php include __DIR__ . '/../layout/sidebar.php';?>
 <!DOCTYPE html>
 <html lang="th">
 <head>
@@ -26,6 +25,22 @@
             <div class="mb-3">
                 <label for="company_name" class="form-label">Company Name</label>
                 <input type="text" class="form-control" id="company_name" name="company_name" required>
+            </div>
+            
+            <!-- เพิ่มฟิลด์สำหรับข้อมูลอื่นๆ -->
+            <div class="mb-3">
+                <label for="customer_phone" class="form-label">Phone</label>
+                <input type="text" class="form-control" id="customer_phone" name="customer_phone">
+            </div>
+
+            <div class="mb-3">
+                <label for="customer_email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="customer_email" name="customer_email">
+            </div>
+
+            <div class="mb-3">
+                <label for="customer_address" class="form-label">Address</label>
+                <textarea class="form-control" id="customer_address" name="customer_address" rows="3"></textarea>
             </div>
             
             <div class="d-grid gap-2">

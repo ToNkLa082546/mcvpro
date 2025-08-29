@@ -1,51 +1,120 @@
-body {
-        font-family: 'Segoe UI', sans-serif;
-        background-color: #00ffff;
-    }
-    .main-content {
-        max-width: 1200px;
-    }
-    .custom-header {
-    background-color: #ff0000;
-    color: #fff;
-    padding: 1rem 1.5rem;
-    border-bottom: 1px solid #ccc;
-    border-top-left-radius: 0.25rem;
-    border-top-right-radius: 0.25rem;
+/* ========== Header ========== */
+.custom-header {
+  background: linear-gradient(90deg, #ff4b2b, #ffd0db);
+  color: white;
+  border-top-left-radius: .75rem;
+  border-top-right-radius: .75rem;
+  font-weight: 600;
+  padding: 1rem 1.25rem;
 }
-    .card {
-        border-radius: 1rem;
-    }
-    .card-header h4 {
-        margin-bottom: 0;
-        font-weight: bold;
-    }
-    .btn {
-        border-radius: 0.5rem;
-    }
-    .btn-outline-secondary:hover {
-        background-color: #f8f9fa;
-    }
-    .form-control,
-    .form-select {
-        border-radius: 0.5rem;
-    }
-    .table th {
-        background-color: #f9f9f9;
-        font-weight: 600;
-    }
-    .table td {
-        vertical-align: middle;
-    }
-    .naked-link {
-        color: inherit;
-        text-decoration: none;
-    }
-    .naked-link:hover {
-        text-decoration: underline;
-        color: #0d6efd;
-    }
-    .pagination .page-item .page-link {
-        border-radius: 0.4rem;
-        margin: 0 2px;
-    }
+
+.custom-header h4 {
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+.custom-header .btn {
+  border-radius: 50px;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+}
+
+.custom-header .btn:hover {
+  background: #212020;
+  transform: translateY(-2px);
+}
+
+/* ========== Activity Card ========== */
+.activity-card {
+  border-radius: 16px;
+  transition: all 0.2s ease-in-out;
+  background: #f9f9f9; /* เทาอ่อน */
+}
+
+.activity-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+
+/* Card body text */
+.activity-card .card-body h6 {
+  font-size: 0.95rem;
+}
+
+.activity-card .card-body p {
+  margin-bottom: 0.4rem;
+  font-size: 0.9rem;
+}
+
+/* Description */
+.activity-card .card-body .small {
+  display: block;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: #ffd8d8;
+}
+
+/* Footer */
+.activity-card .card-footer {
+  font-size: 0.8rem;
+  border-top: 1px solid #ffd8d8;
+  background-color: #ffd8d8;
+}
+
+/* ========== Badge ========== */
+.badge-custom {
+  font-size: 0.85rem;
+  padding: 0.4em 0.7em;
+  border-radius: 8px;
+}
+
+/* ========== Buttons ========== */
+.btn-circle {
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-circle i {
+  font-size: 0.9rem;
+}
+
+/* Hover Effects */
+.btn-outline-primary:hover {
+  background-color: #0d6efd;
+  color: #fff;
+}
+
+.btn-outline-danger:hover {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+/* ========== Pagination ========== */
+.pagination .page-link {
+  border-radius: 50px !important;
+  margin: 0 3px;
+  color: #ff416c;
+}
+
+.pagination .page-item.active .page-link {
+  background: linear-gradient(90deg, #ff4b2b, #ff416c);
+  border-color: transparent;
+  color: #fff;
+}
+
+.pagination .page-link:hover {
+  background: #ffe2e2;
+  color: #ff416c;
+}
+
+/* ========== Responsive ========== */
+@media (max-width: 768px) {
+  .activity-card {
+    margin-bottom: 1rem;
+  }
+}

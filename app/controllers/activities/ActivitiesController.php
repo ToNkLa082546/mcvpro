@@ -45,16 +45,10 @@ class ActivitiesController extends Controller
     $perPage = 15;
     $currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
-    // ตรวจสอบว่ามีตัวกรองใดๆ ใช้งานอยู่หรือไม่
     if (!empty(array_filter($filters))) {
-        // หากมีการใช้ตัวกรอง จะยังคงใช้ตรรกะเดิมในการกรองตามบทบาท
-        // โดยเมธอดในโมเดลจะจัดการเรื่องสิทธิ์การเข้าถึงเอง
         $totalActivities = $this->activityModel->countFiltered($filters, $userId, $role);
         $activities = $this->activityModel->getFilteredPaginated($filters, $currentPage, $perPage, $userId, $role);
     } else {
-        // แก้ไข: ส่วนนี้ถูกปรับเปลี่ยน
-        // โค้ดนี้จะแสดงเฉพาะกิจกรรมของผู้ใช้ที่ล็อกอินอยู่เป็นค่าเริ่มต้นเสมอ
-        // โดยไม่คำนึงถึงบทบาทว่าเป็นผู้ดูแลระบบหรือไม่
         $totalActivities = $this->activityModel->countAllForUser($userId);
         $activities = $this->activityModel->getAllForUserPaginated($userId, $currentPage, $perPage);
     }

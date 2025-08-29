@@ -1,53 +1,115 @@
-body {
-            background-color: #f8f9fa;
-        }
+/* =============================
+   Project Card View Styles
+   ============================= */
 
-        .card {
-            border-radius: 1rem;
-        }
+/* Layout: ทำเป็นกริด */
+.project-card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.2rem;
+  margin-top: 1.5rem;
+}
 
-        .card-header {
-            background-color: #007e43;
-            color: #fff;
-            border-top-left-radius: 1rem;
-            border-top-right-radius: 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+/* Card Header */
+.card-header {
+  background: linear-gradient(90deg, #81dbfc, #cee6ff);
+  color: #000000;
+  font-weight: bold;
+  border-radius: 12px 12px 0 0;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-        .card-header h4 {
-            margin-bottom: 0;
-        }
 
-        .btn-light {
-            border: 1px solid #ccc;
-        }
+/* Card หลัก */
+.project-card {
+  background: #f9f9f9; /* เทาอ่อน */
+  border-radius: 12px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.08);
+  padding: 1.2rem 1.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden; /* กันเนื้อหา overflow */
+}
 
-        .form-label {
-            font-weight: 500;
-        }
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
 
-        .action-btns .btn {
-            margin: 0 2px;
-        }
+/* Header */
+.project-card h5 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: .3rem;
+}
 
-        .table thead {
-            background-color: #212529;
-            color: #fff;
-        }
+.project-card .company {
+  font-size: 0.9rem;
+  color: #777;
+  margin-bottom: .6rem;
+}
 
-        .table-hover tbody tr:hover {
-            background-color: #f1f1f1;
-        }
+/* Budget + Status */
+.project-card .meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: .8rem;
+}
 
-        .badge-status {
-            font-size: 0.9em;
-            padding: 0.45em 0.8em;
-        }
+.project-card .budget {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #444;
+}
 
-        .card-footer {
-            background-color: #f1f1f1;
-            border-bottom-left-radius: 1rem;
-            border-bottom-right-radius: 1rem;
-        }
+/* Badge Status */
+.project-card .status {
+  padding: 0.35rem 0.7rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.status-pending {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.status-approved {
+  background: #d4edda;
+  color: #155724;
+}
+
+.status-closed {
+  background: #e2e3e5;
+  color: #383d41;
+}
+
+/* Footer */
+.project-card .footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: .8rem;
+}
+
+/* ปุ่ม Action */
+.project-card .actions a {
+  margin-left: .4rem;
+  font-size: 0.85rem;
+  padding: .3rem .5rem;
+}
+
+.btn-circle i {
+  font-size: 14px;
+}
+.btn-circle:hover {
+  transform: scale(1.1);
+}

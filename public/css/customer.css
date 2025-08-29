@@ -1,49 +1,116 @@
-body {
-            background-color: #f8f9fa;
-        }
+/* =====================
+   Customer List Custom Style
+===================== */
+html, body {
+  overflow-x: hidden;
+}
 
-        .card {
-            border-radius: 1rem;
-        }
+/* Bootstrap row fix */
+.row {
+  margin-left: 0;
+  margin-right: 0;
+}
 
-        .card-header {
-            background-color: #e27800;
-            color: #fff;
-            border-top-left-radius: 1rem;
-            border-top-right-radius: 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+/* Card หลัก */
+.card {
+  border-radius: 12px;
+  border: none;
+  background: #ffffff;
+}
 
-        .card-header h4 {
-            margin-bottom: 0;
-        }
+/* Header ของ Card */
+.card-header {
+  background: linear-gradient(90deg, #201cff, #409fff); /* เทาเข้ม → เทาอ่อน */
+  color: #000;
+  font-weight: bold;
+  border-radius: 12px 12px 0 0;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-        .card-body {
-            background-color: #ffffff;
-        }
+/* ปุ่ม Add Customer */
+.card-header .btn {
+  background-color: #fff;
+  color: #495057;
+  border: 1px solid #dee2e6;
+  transition: all 0.3s ease-in-out;
+}
+.card-header .btn:hover {
+  background-color: #f1f3f5;
+  transform: translateY(-2px);
+}
 
-        .btn-primary i,
-        .btn-outline-secondary i {
-            margin-right: 5px;
-        }
+/* Customer Card */
+.customer-card {
+  border-radius: 10px;
+  transition: all 0.2s ease-in-out;
+  background: #f8f9fa; /* เทาอ่อน */
+  border: 1px solid #e9ecef;
+  padding: 1rem;
+}
+.customer-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
 
-        .action-btns .btn {
-            margin: 0 2px;
-        }
+/* Title ของการ์ด */
+.customer-card h5 {
+  font-weight: 600;
+  color: #2575fc;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
 
-        .table thead {
-            background-color: #212529;
-            color: #ffffff;
-        }
+/* ข้อความในการ์ด */
+.customer-card .card-text {
+  font-size: 0.9rem;
+  margin-bottom: 0.4rem;
+}
 
-        .table-hover tbody tr:hover {
-            background-color: #f1f1f1;
-        }
+/* ปุ่ม Action */
+.btn-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  padding: 0;
+  text-align: center;
+  line-height: 30px;
+  transition: all 0.2s ease-in-out;
+}
+.btn-circle i {
+  font-size: 14px;
+}
+.btn-circle:hover {
+  transform: scale(1.1);
+}
 
-        .card-footer {
-            background-color: #f1f1f1;
-            border-bottom-left-radius: 1rem;
-            border-bottom-right-radius: 1rem;
-        }
+/* ฟอร์ม Filter */
+form .form-label {
+  font-weight: 600;
+  color: #495057;
+}
+form input,
+form select {
+  border-radius: 8px;
+  border: 1px solid #ced4da;
+}
+form button {
+  border-radius: 8px;
+}
+
+/* Pagination */
+.pagination .page-link {
+  border-radius: 8px;
+  margin: 0 3px;
+  border: none;
+  color: #495057;
+}
+.pagination .page-item.active .page-link {
+  background-color: #6c757d;
+  color: #fff;
+}
+.pagination .page-link:hover {
+  background-color: #dee2e6;
+}

@@ -42,8 +42,8 @@ if (class_exists('NumberToWords\NumberToWords')) {
         <table style="margin-bottom: 2rem;">
             <tr>
                 <td style="width: 60%; vertical-align: top;">
-                    <h2>[Your Company Name]</h2>
-                    <p class="text-muted">[Your Address]<br>[Your Phone & Email]</p>
+                    <h2>BIGFISH ENTERPRISE LIMITED</h2>
+                    <p class="text-muted">6th FL., Software Park Bldg., 99/29<br>Email : info@bigfish.co.th</p>
                 </td>
                 <td style="width: 40%; text-align: right; vertical-align: top;">
                     <h1 class="text-muted">QUOTATION</h1>
